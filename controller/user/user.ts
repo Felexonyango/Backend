@@ -86,7 +86,7 @@ export const SignIn  =async(req: Request,res: Response,next: NextFunction)=>{
     
     }
     catch(err){
-        next(err)
+      res.status(400).json({ message:"Server error"})
 
     }
 }
