@@ -35,12 +35,16 @@ next(err)
 
 }
 export const UpdateProfile = async(req: Request, res: Response,next: NextFunction) =>{
+    const {userId,Bio}=req.body
     try{
-        const {id}=req.params
+      
 
-const update= await profile.findUnique({
+const update= await profile.update({
     where: {
-        id:Number(id)
+        userId: userId
+    },
+    data: {
+      Bio
     }
 })
 return res.json(update)
@@ -53,10 +57,11 @@ return res.json(update)
 
 }
 export const DeleteProfile = async(req: Request, res: Response,next: NextFunction) =>{
+   
     try{
         const {id}=req.params
 
-const deletes= await profile.findUnique({
+const deletes= await profile.delete({
     where: {
         id:Number(id)
     }

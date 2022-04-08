@@ -36,7 +36,7 @@ export const DeleteComment = async(req: Request, res: Response,next: NextFunctio
     try{
         const {id}=req.params
 
-const deletes= await comment.findUnique({
+const deletes= await comment.delete({
     where: {
         id:Number(id)
     }

@@ -55,12 +55,13 @@ export const UpdateBook = async(req: Request, res: Response,next: NextFunction) 
     try{
         const {id}=req.params
 
-const getbook= await book.findUnique({
+const updatebook= await book.update({
     where: {
         id:Number(id)
-    }
+    },
+    data:req.body
 })
-return res.json(getbook)
+return res.json(updatebook)
 
 
     }
