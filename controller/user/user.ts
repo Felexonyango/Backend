@@ -12,8 +12,12 @@ export const Signup = async(req:Request, res:Response,next:NextFunction)=>{
  const {id} = req.params
 try{
     const {name,email,password}=req.body as Iuser
+const existuser = await user.findUnique({where: {email:email}})
+if(existuser){
+  return res.status(404).json({msg: "User already exists"})
+}
 
-    const hashedPassword = await getPassword(password)
+const hashedPassword = await getPassword(password)
 const users =await user.create({
     data:{
         name,

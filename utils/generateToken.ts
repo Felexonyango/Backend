@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-const JWT_KEY="5f53f5b35a4f82003d3e8061"
+
  export const getToken = (id: string) => {
 
-  const token = jwt.sign({ id },JWT_KEY , {
+  const token = jwt.sign({ id }, process.env.JWT_KEY || '', {
     expiresIn: "30d",
   });
   return token;
