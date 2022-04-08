@@ -37,7 +37,7 @@ res.status(201).json({ success: true, users: {
 
 }
 catch(err){
-res.status(400).json({ message:"user already exists"})
+res.status(400).json({ message:"Server error"})
 
 }
 
