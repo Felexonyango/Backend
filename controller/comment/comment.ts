@@ -51,12 +51,16 @@ return res.status(204).json({success: true,deletes})
 
 }
 export const EditComment = async(req: Request, res: Response,next: NextFunction) =>{
+    const {Comment, WrittenById}=req.body
     try{
         const {id}=req.params
 
-const editcomment= await comment.findUnique({
+const editcomment= await comment.update({
     where: {
-        id:Number(id)
+        id:WrittenById
+    },
+    data:{
+        Comment:Comment
     }
 })
 return res.status(204).json({success: true,editcomment})
