@@ -11,7 +11,7 @@ router.post('/api/auth',SignIn)
 router.post('/api/book',CreateBook)
 router.get('/api/book',getBooks)
 router.get('/api/book/:id',getBook)
-router.patch('/api/book/:id',UpdateBook)
+router.put('/api/book/:id',UpdateBook)
 //profie
 router.post('/api/profile',CreateProfile)
 router.put('/api/profile/:id',UpdateProfile)
