@@ -51,3 +51,21 @@ return res.json(getbook)
     }
 
 }
+export const UpdateBook = async(req: Request, res: Response,next: NextFunction) =>{
+    try{
+        const {id}=req.params
+
+const getbook= await book.findUnique({
+    where: {
+        id:Number(id)
+    }
+})
+return res.json(getbook)
+
+
+    }
+    catch(err){
+        next(err)
+    }
+
+}

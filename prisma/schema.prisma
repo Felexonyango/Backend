@@ -15,17 +15,18 @@ model User{
   name String 
   email String   @unique
   password String
-  address Address?
+  profile Profile?
+  book Book[]
+  comment Comment[]
 }
 
-model Address{
-  int Int @id @default(autoincrement())
-  country String
-  city String
-  street String
-  userId Int
-  user User @relation(fields: [userId],references: [id])
-
+model Profile {
+  id          Int      @id @default(autoincrement())
+  CreatedDate  DateTime @default(now())
+  ModifiedDate DateTime @default(now()) @updatedAt
+  Bio          String?
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int      @unique
 }
 
 
@@ -33,4 +34,17 @@ model Book {
   id Int @id @default(autoincrement())
   title String
   description String
+  author User @relation(fields: [authorId],references: [id])
+  authorId  Int
+
+ 
+}
+model Comment {
+  id           Int      @id @default(autoincrement())
+  CreatedDate  DateTime @default(now())
+  ModifiedDate DateTime @updatedAt
+  Comment      String
+  WrittenBy    User     @relation(fields: [WrittenById], references: [id])
+  WrittenById  Int
+
 }
