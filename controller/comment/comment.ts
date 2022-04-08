@@ -4,24 +4,12 @@ import { PrismaClient } from '@prisma/client'
 const {comment} =new   PrismaClient()
 export const createComment =async(req:Request, res:Response,next: NextFunction) => {
       try{
-       const {  Comment ,WrittenById}=req.body
+        const {CommentList} = req.body
 
-        const userComment = await comment.findUnique({
-            where:{
-                id:WrittenById
-            }
-        })
-        if(!userComment){
-            return res.status(404).json({msg: "User not found"})
-        }
-        
-       res.json(userComment)
+   
 
-       const  createComment = await comment.create({
-        data:{
-            Comment,
-            WrittenById
-        }
+       const  createComment = await comment.createMany({
+        data:CommentList
     })
     res.json(createComment)
  
@@ -53,7 +41,7 @@ return res.status(204).json({success: true,deletes})
 export const EditComment = async(req: Request, res: Response,next: NextFunction) =>{
     const {Comment, WrittenById}=req.body
     try{
-        const {id}=req.params
+     
 
 const editcomment= await comment.update({
     where: {
@@ -64,6 +52,22 @@ const editcomment= await comment.update({
     }
 })
 return res.status(204).json({success: true,editcomment})
+
+
+    }
+    catch(err){
+        res.status(400).json({ message:"comments not edited"})
+    }
+
+}
+export const GetComments = async(req: Request, res: Response,next: NextFunction) =>{
+ 
+    try{
+     
+
+const getcoments= await comment.findMany({})
+
+return res.status(204).json({success: true,getcoments})
 
 
     }

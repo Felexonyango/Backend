@@ -6,11 +6,11 @@ import { PrismaClient } from '@prisma/client'
 const {book} =new   PrismaClient()
 export const CreateBook =async(req:Request, res:Response,next:Function) => {
       
-  
+  const {bookList} = req.body
     try{
 
-        const  userbooks = await book.create({
-        data:req.body
+        const  userbooks = await book.createMany({
+        data:bookList
         
         })
         res.json(userbooks)

@@ -2,7 +2,7 @@ import express from 'express';
 import { Signup,SignIn } from '../controller/user/user';
 import {CreateBook,getBooks,getBook,UpdateBook} from '../controller/Book/book'
 import {CreateProfile,UpdateProfile,DeleteProfile} from '../controller/Profile/Profile'
-import {createComment,DeleteComment,EditComment} from '../controller/comment/comment'
+import {createComment,DeleteComment,EditComment,GetComments} from '../controller/comment/comment'
 const router = express.Router();
 //user
 router.post('/api/users', Signup)
@@ -22,6 +22,7 @@ router.delete('/api/profile/:id',DeleteProfile)
 router.post('/api/comment',createComment)
 router.put('/api/comment/:id',EditComment)
 router.delete('/api/comment/:id',DeleteComment)
+router.get('/api/comments',GetComments)
 
 
 
